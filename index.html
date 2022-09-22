@@ -4,6 +4,7 @@
     <head>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho     +j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
       <div class="jumbotron jumbotron-fluid">
@@ -21,11 +22,8 @@
           </div>
           <div class="form-row">
               <div class="form-group col-md-4">
-                  <label for="inputState">City</label>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
+                  <label for="inputCity">City</label>
+                  <input type="text" class="form-control" id="inputCity">
                 </div>
             <div class="form-group col-md-4">
               <label for="inputState">State</label>
@@ -34,12 +32,8 @@
                 <option>...</option>
               </select>
             </div>
-            <div class="form-group col-md-2">
-              <label for="inputZip">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
-            </div>
           </div>
-          <button type="submit" class="btn btn-primary">Map It</button>
+          <button type="submit" class="btn btn-primary" id="mapBtn">Map It</button>
       </form>
 
       <img class='crime' src="./assets/images/crimeimage.jpg">
@@ -82,6 +76,6 @@
            </div>
          </div>
        </div>-->
-
+       <script src="./assets/js/script.js"></script>
   </body>
 </html>
