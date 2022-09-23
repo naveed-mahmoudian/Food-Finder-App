@@ -61,6 +61,7 @@ var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
 var userLat;
 var userLon;
 
+
 getStates();
 
 function getStates() {
@@ -80,10 +81,12 @@ function getAddress(event) {
 
   fullAddress = address + ", " + city + ", " + state;
 
+
   // Clear form values after saving them to fullAddress variable
   inputAddress.val("");
   inputCity.val("");
   inputState.val("Choose...");
+
 
   // Geocoding API
   fetch(
@@ -99,4 +102,6 @@ function getAddress(event) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
     });
+
 }
+
