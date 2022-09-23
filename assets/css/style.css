@@ -1,0 +1,24 @@
+body {
+    font-family: 'Karla', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  h1  {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    display: flex;
+    padding: 2%;
+    background-color: #13293d;
+    color: #fff;
+  }
+
+  button {
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    background-color: #247BA0;
+    color: white;
+  }
