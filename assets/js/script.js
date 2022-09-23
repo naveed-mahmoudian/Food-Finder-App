@@ -58,6 +58,7 @@ var states = [
 ];
 var fullAddress = "";
 
+
 getStates();
 
 function getStates() {
@@ -76,10 +77,19 @@ function getAddress(event) {
   var state = inputState.val();
 
   fullAddress = address + ", " + city + ", " + state;
-  console.log(fullAddress);
+  //console.log(fullAddress);
+  
+    function recentSearches() {
+        var searchHistory = localStorage.getItem('fullAddress')
+        fullAddresss.push(searchHistory);
+        localStorage.setItem("fullAddress", JSON.stringify(searchHistory));
+        console.log(localStorage.setItem(fullAddress))
+    }
 
   // Clear form values after saving them to fullAddress variable
   inputAddress.val("");
   inputCity.val("");
   inputState.val("Choose...");
+
 }
+
