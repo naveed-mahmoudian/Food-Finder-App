@@ -124,13 +124,12 @@ console.log(history)
 
 //crime data api code
 
-
-function table()  
-for (crime in crimes) {
-    var crime = JSON.parse('crimes')
-    var tableContainer = documen.getElementById('table-container')
-    localStorage.getItem('tableContainer', crimes)
-    tableContainer.push('.table-container')
-    localStorage.setItem('tableContainer', tableContainer)
-    console.log(typeof, crime)
-}
+function table()  {
+    for (crime in crimes) {
+       var crime = JSON.parse('crimes')
+       var tableContainer = documen.getElementById ('table-container')
+       localStorage.getItem('tableContainer', crimes)
+       tableContainer.push('.table-container')
+       localStorage.setItem('tableContainer', tableContainer)
+       console.log(typeof crime)
+}}
