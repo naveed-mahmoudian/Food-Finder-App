@@ -95,7 +95,21 @@ function getAddress(event) {
   inputAddress.val("");
   inputCity.val("");
   inputState.val("Choose...");
+  APIKey;
 }
+
+const crimes = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f',
+		'X-RapidAPI-Host': 'jgentes-Crime-Data-v1.p.rapidapi.com'
+	}
+};
+
+fetch('https://jgentes-crime-data-v1.p.rapidapi.com/crime?startdate=9%2F19%2F2020&enddate=9%2F25%2F202025&long=-122.5076392&lat=37.757815', crimes)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
 
 //recent searches
 function history() {
@@ -109,24 +123,14 @@ history();
 console.log(history)
 
 //crime data api code
-const crimes = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f',
-		'X-RapidAPI-Host': 'jgentes-Crime-Data-v1.p.rapidapi.com'
-	}
-};
 
-fetch('https://jgentes-crime-data-v1.p.rapidapi.com/crime?startdate=9%2F19%2F2015&enddate=9%2F25%2F2015&long=-122.5076392&lat=37.757815', crimes)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
 
-//for (crime in crimes) {
+function table()  
+for (crime in crimes) {
     var crime = JSON.parse('crimes')
     var tableContainer = documen.getElementById('table-container')
     localStorage.getItem('tableContainer', crimes)
     tableContainer.push('.table-container')
     localStorage.setItem('tableContainer', tableContainer)
     console.log(typeof, crime)
-//}
+}
