@@ -106,6 +106,16 @@ function getAddress(event) {
 
 }
 
+var sideHistory = document.createElement('li');
+fetch('https://api.yelp.com/v3/businesses/search?limit=' + 5 + '&apikey=' + restuarauntAPIKey)
+    .then(function (response) {
+       return response.json();
+     })
+     .then(function (data) {
+       userLat = data.features[0].properties.lat;
+      userLon = data.features[0].properties.lon;
+     });
+
 //var addressHistory = []
 
 // function recentSearches() {
