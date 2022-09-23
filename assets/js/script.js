@@ -58,6 +58,7 @@ var states = [
 ];
 var fullAddress = "";
 var APIKey = "AIzaSyCzN1vyP42X-Ral2rxZkmH0knZhGOyoEGo";
+var fbiAPIKey: "JQc2dmS8sFJWhxnMwIEoBmgX6WJr94hugMLiNdaG ";
 
 getStates();
 
