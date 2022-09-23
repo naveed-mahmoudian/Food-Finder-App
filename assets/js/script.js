@@ -83,5 +83,4 @@ function getAddress(event) {
   inputAddress.val("");
   inputCity.val("");
   inputState.val("Choose...");
-  APIKey;
 }
