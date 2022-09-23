@@ -97,6 +97,7 @@ function getAddress(event) {
   inputState.val("Choose...");
 }
 
+//recent searches
 function history() {
     var lastAreaSearched = getAddress(fullAddress)
     localStorage.getItem(lastAreaSearched)
@@ -104,8 +105,11 @@ function history() {
     localStorage.setItem("fullAddress", lastAreaSearched)
 }
 
+history();
+console.log(history)
+
 //crime data api code
-const options = {
+const crimes = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': '46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f',
@@ -113,9 +117,16 @@ const options = {
 	}
 };
 
-fetch('https://jgentes-crime-data-v1.p.rapidapi.com/crime?startdate=9%2F19%2F2015&enddate=9%2F25%2F2015&long=-122.5076392&lat=37.757815', options)
+fetch('https://jgentes-crime-data-v1.p.rapidapi.com/crime?startdate=9%2F19%2F2015&enddate=9%2F25%2F2015&long=-122.5076392&lat=37.757815', crimes)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
 
-for (crime)
+//for (crime in crimes) {
+    var crime = JSON.parse('crimes')
+    var tableContainer = documen.getElementById('table-container')
+    localStorage.getItem('tableContainer', crimes)
+    tableContainer.push('.table-container')
+    localStorage.setItem('tableContainer', tableContainer)
+    console.log(typeof, crime)
+//}
