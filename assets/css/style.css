@@ -1,5 +1,5 @@
 * {
-  background-image: url(./images/backgroundimage.jpg);
+  background-image: url("");
 }
 
 body {
@@ -39,4 +39,11 @@ body {
     overflow-x: hidden;
     padding-top: 20px;
     color:aliceblue
+  }
+
+  .restaurant {
+    display: flex;
+    left: 0;
+    overflow-y: auto;
+    align-items: flex-end;
   }
