@@ -1,3 +1,7 @@
+* {
+  background-image: url("");
+}
+
 body {
     font-family: 'Karla', sans-serif;
     font-size: 20px;
@@ -21,4 +25,25 @@ body {
     font-size: 15px;
     background-color: #247BA0;
     color: white;
+  }
+
+  .sidenav {
+    right: 0;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(1, 18, 114);
+    overflow-x: hidden;
+    padding-top: 20px;
+    color:aliceblue
+  }
+
+  .restaurant {
+    display: flex;
+    left: 0;
+    overflow-y: auto;
+    align-items: flex-end;
   }
