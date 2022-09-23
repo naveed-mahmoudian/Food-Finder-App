@@ -57,7 +57,6 @@ var states = [
   "WY",
 ];
 var fullAddress = "";
-var APIKey = "AIzaSyCzN1vyP42X-Ral2rxZkmH0knZhGOyoEGo";
 
 getStates();
 
