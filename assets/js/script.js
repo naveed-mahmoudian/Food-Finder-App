@@ -11,12 +11,11 @@
 // import { ICountry, IState, ICity } from 'country-state-city'
 
 // Variables
-var inputAddress = document.querySelector("#inputAddress");
-var inputCity = document.querySelector("#inputCity");
-var inputState = document.querySelector("#inputState");
-var mapBtn = document.querySelector("#mapBtn");
-var tableContainer = document.querySelector(".table-container");
-
+var inputAddress = $("#inputAddress");
+var inputCity = $("#inputCity");
+var inputState = $("#inputState");
+var mapBtn = $("#mapBtn");
+var tableContainer = $(".table-container");
 var states = [
   "AL",
   "AK",
@@ -69,12 +68,31 @@ var states = [
   "WI",
   "WY",
 ];
+var fullAddress = "";
+var APIKey = "AIzaSyCzN1vyP42X-Ral2rxZkmH0knZhGOyoEGo";
 
 getStates();
+
 function getStates() {
   for (i = 0; i < states.length; i++) {
     var state = document.createElement("option");
     state.innerHTML = states[i];
     inputState.append(state);
   }
+}
+
+mapBtn.click(getAddress);
+function getAddress(event) {
+  event.preventDefault();
+  var address = inputAddress.val();
+  var city = inputCity.val();
+  var state = inputState.val();
+
+  fullAddress = address + ", " + city + ", " + state;
+  console.log(fullAddress);
+
+  // Clear form values after saving them to fullAddress variable
+  inputAddress.val("");
+  inputCity.val("");
+  inputState.val("Choose...");
 }
