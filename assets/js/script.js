@@ -58,7 +58,8 @@ var states = [
 ];
 var fullAddress = "";
 var APIKey = "AIzaSyCzN1vyP42X-Ral2rxZkmH0knZhGOyoEGo";
-var fbiAPIKey: "JQc2dmS8sFJWhxnMwIEoBmgX6WJr94hugMLiNdaG ";
+var restaurantAPIKey: "ZRKeED18Br6ViDtZ-9S7KlRe128BbbFVlU4gqgE9dhjZyih5noGK1ythaIBjt9yasSB-0ZpFYO8MqmpoYiL555G3ju-q-i9d0ijX7ietmDxhduW-n11dT_D9ACctY3Yx";
+yelpClientID:  gaegrvOcaL_UNDWcTXQzLw;
 
 getStates();
 
@@ -86,3 +87,4 @@ function getAddress(event) {
   inputState.val("Choose...");
   APIKey;
 }
+
