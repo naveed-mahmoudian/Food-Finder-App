@@ -57,6 +57,9 @@ var states = [
   "WY",
 ];
 var fullAddress = "";
+var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
+var userLat;
+var userLon;
 
 getStates();
 
@@ -76,10 +79,24 @@ function getAddress(event) {
   var state = inputState.val();
 
   fullAddress = address + ", " + city + ", " + state;
-  console.log(fullAddress);
 
   // Clear form values after saving them to fullAddress variable
   inputAddress.val("");
   inputCity.val("");
   inputState.val("Choose...");
+
+  // Geocoding API
+  fetch(
+    "https://api.geoapify.com/v1/geocode/search?text=" +
+      fullAddress +
+      "&apiKey=" +
+      geocodeAPIKey
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      userLat = data.features[0].properties.lat;
+      userLon = data.features[0].properties.lon;
+    });
 }
