@@ -41,9 +41,21 @@ body {
     color:aliceblue
   }
 
-  .restaurant {
+  .restaurant, .table-container {
     display: flex;
+    flex-direction: row;
     left: 0;
     overflow-y: auto;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 30px;
+    padding: 5px;
+    width: 500px;
+    position: relative;
+  }
+
+  .table-container {
+    display: block;
+    align-content: center;
+    justify-items: center;
   }
