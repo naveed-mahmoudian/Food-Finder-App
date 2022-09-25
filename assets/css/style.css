@@ -2,12 +2,12 @@
   background-image: url("");
 }
 
-body {
+/* body {
     font-family: 'Karla', sans-serif;
     font-size: 20px;
     line-height: 1.5;
     text-align: left;
-  }
+  } */
 
 .header  {
     font-family: 'Rubik', sans-serif;
@@ -18,14 +18,14 @@ body {
     color: #fff;
   }
 
-button {
+/* button {
     padding: 5px;
     margin: 10px;
     cursor: pointer;
     font-size: 15px;
     background-color: #247BA0;
     color: white;
-  }
+  } */
 
   /* .sidenav {
     right: 0;
@@ -41,7 +41,7 @@ button {
     color:aliceblue
   } */
 
-.restaurant, .table-container {
+/* .restaurant, .table-container {
     display: flex;
     flex-direction: row;
     left: 0;
@@ -52,10 +52,10 @@ button {
     padding: 5px;
     width: 500px;
     position: relative;
-  }
+  } */
 
-.table-container {
+/* .table-container {
     display: block;
     align-content: center;
     justify-items: center;
-  }
+  } */
