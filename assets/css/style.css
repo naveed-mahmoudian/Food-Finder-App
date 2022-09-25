@@ -9,7 +9,7 @@ body {
     text-align: left;
   }
 
-  h1  {
+.header  {
     font-family: 'Rubik', sans-serif;
     font-weight: 700;
     display: flex;
@@ -18,7 +18,7 @@ body {
     color: #fff;
   }
 
-  button {
+button {
     padding: 5px;
     margin: 10px;
     cursor: pointer;
@@ -27,7 +27,7 @@ body {
     color: white;
   }
 
-  .sidenav {
+  /* .sidenav {
     right: 0;
     height: 100%;
     width: 200px;
@@ -39,9 +39,9 @@ body {
     overflow-x: hidden;
     padding-top: 20px;
     color:aliceblue
-  }
+  } */
 
-  .restaurant, .table-container {
+.restaurant, .table-container {
     display: flex;
     flex-direction: row;
     left: 0;
@@ -54,7 +54,7 @@ body {
     position: relative;
   }
 
-  .table-container {
+.table-container {
     display: block;
     align-content: center;
     justify-items: center;

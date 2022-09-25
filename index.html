@@ -9,39 +9,36 @@
         <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-      <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4">New Food 4 ME</h1>
-            <p class="lead">Not familiar with your surroundings?</p>
-            <p class="lead">Enter your location to find restaurants in your area.</p>
+      <div class="container-fluid header">
+          <div class="row">
+            <h1 class="text-center">FOODr</h1>
+            <p class="lead text-center">Not familiar with your surroundings?</p>
+            <p class="lead text-center">Enter your location to find restaurants in your area.</p>
           </div>
       </div>
 
-      <form id="mySidenav" class="sidenav">
-          <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St.">
-          </div>
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                  <label for="inputCity">City</label>
-                  <input type="text" class="form-control" id="inputCity">
-                </div>
-            <div class="form-group col-md-4">
-              <label for="inputState">State</label>
-              <select id="inputState" class="form-control">
+      <div class="container-fluid">
+        <form id="mySidenav" class="sidenav col-3">
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St.">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control">
                 <option selected>Choose...</option>
-              </select>
+            </select>
+            <button type="submit" class="btn btn-primary justify-content-center" id="mapBtn">Map It</button>
             </div>
-          </div>
-          <button type="submit" class="btn btn-primary" id="mapBtn">Map It</button>
-      </form>
+        </form>
 
-      <section class="sidenavhistroy"></section>
+        <section class="sidenavhistroy"></section>
+      </div>
 
-      <img class='restaurant' src="./assets/images/tableimage.jpg">
-
-      <div class="table-container"></div>
+      <!-- <img class='restaurant' src="./assets/images/tableimage.jpg"> -->
+      <div class="container col-9">
+        <div class="table-container"></div>
+      </div>
 
 
 <!--to be added dynamically with JS for history section
