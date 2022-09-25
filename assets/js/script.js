@@ -61,7 +61,6 @@ var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
 var userLat;
 var userLon;
 
-
 getStates();
 
 function getStates() {
@@ -86,7 +85,6 @@ function getAddress(event) {
   inputCity.val("");
   inputState.val("Choose...");
 
-
   // Geocoding API
   fetch(
     "https://api.geoapify.com/v1/geocode/search?text=" +
@@ -101,7 +99,6 @@ function getAddress(event) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
     });
-
 }
 
 //var addressHistory = []
