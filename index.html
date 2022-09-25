@@ -9,40 +9,47 @@
         <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-      <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4">New Food 4 ME</h1>
-            <p class="lead">Not familiar with your surroundings?</p>
-            <p class="lead">Enter your location to find restaurants in your area.</p>
-          </div>
-      </div>
+    <!-- Header -->
+    <div class="container-fluid header bg-primary bg-gradient">
+        <div class="row">
+            <h1 class="text-center">FOODr</h1>
+            <p class="text-center">Not familiar with your surroundings?</p>
+            <p class="text-center">Enter your location to find restaurants in your area!</p>
+        </div>
+    </div>
 
-      <form id="mySidenav" class="sidenav">
-          <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St.">
-          </div>
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                  <label for="inputCity">City</label>
-                  <input type="text" class="form-control" id="inputCity">
+    <!-- Main Container -->
+    <div class="container-fluid m-3">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-4">
+                <label for="inputAddress" class="form-label">Address</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St.">
                 </div>
-            <div class="form-group col-md-4">
-              <label for="inputState">State</label>
-              <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-              </select>
+                <label for="inputCity" class="form-label">City</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputCity" placeholder="Los Angeles">
+                </div>
+                <label for="inputState" class="form-label">State</label>
+                <div class="input-group">
+                    <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>
+                </div>
+                <hr>
+                <div class="sideNavHistroy text-center">History Goes Here</div>
             </div>
-          </div>
-          <button type="submit" class="btn btn-primary" id="mapBtn">Map It</button>
-      </form>
-
-      <section class="sidenavhistroy"></section>
-
-      <img class='restaurant' src="./assets/images/tableimage.jpg">
-
-      <div class="table-container"></div>
-
+            <!-- Results Table -->
+            <div class="col-8 text-center">
+                <div class="table-container">Table Goes Here</div>
+                <img class="restaurant img-fluid mt-3" src="./assets/images/tableimage.jpg">
+            </div>
+        </div>
+    </div>
 
 <!--to be added dynamically with JS for history section
         <button type="button" class="btn btn-outline-primary">Primary</button>

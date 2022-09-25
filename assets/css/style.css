@@ -1,33 +1,33 @@
-* {
+/* * {
   background-image: url("");
-}
+} */
 
-body {
+/* body {
     font-family: 'Karla', sans-serif;
     font-size: 20px;
     line-height: 1.5;
     text-align: left;
-  }
-
-  h1  {
+  } */
+/* 
+.header  {
     font-family: 'Rubik', sans-serif;
     font-weight: 700;
     display: flex;
     padding: 2%;
     background-color: #13293d;
     color: #fff;
-  }
+  } */
 
-  button {
+/* button {
     padding: 5px;
     margin: 10px;
     cursor: pointer;
     font-size: 15px;
     background-color: #247BA0;
     color: white;
-  }
+  } */
 
-  .sidenav {
+  /* .sidenav {
     right: 0;
     height: 100%;
     width: 200px;
@@ -39,9 +39,9 @@ body {
     overflow-x: hidden;
     padding-top: 20px;
     color:aliceblue
-  }
+  } */
 
-  .restaurant, .table-container {
+/* .restaurant, .table-container {
     display: flex;
     flex-direction: row;
     left: 0;
@@ -52,10 +52,10 @@ body {
     padding: 5px;
     width: 500px;
     position: relative;
-  }
+  } */
 
-  .table-container {
+/* .table-container {
     display: block;
     align-content: center;
     justify-items: center;
-  }
+  } */

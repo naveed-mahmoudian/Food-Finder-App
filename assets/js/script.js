@@ -61,8 +61,8 @@ var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
 var userLat;
 var userLon;
 
-var restuarauntAPIKey = 'ZRKeED18Br6ViDtZ-9S7KlRe128BbbFVlU4gqgE9dhjZyih5noGK1ythaIBjt9yasSB-0ZpFYO8MqmpoYiL555G3ju-q-i9d0ijX7ietmDxhduW-n11dT_D9ACctY3Yx';
-
+var restaurantAPIKey =
+  "ZRKeED18Br6ViDtZ-9S7KlRe128BbbFVlU4gqgE9dhjZyih5noGK1ythaIBjt9yasSB-0ZpFYO8MqmpoYiL555G3ju-q-i9d0ijX7ietmDxhduW-n11dT_D9ACctY3Yx";
 
 getStates();
 
@@ -88,8 +88,7 @@ function getAddress(event) {
   inputCity.val("");
   inputState.val("Choose...");
 
-
-  // Geocoding API
+  // Geocoding API then inputting data into Yelp API
   fetch(
     "https://api.geoapify.com/v1/geocode/search?text=" +
       fullAddress +
@@ -102,19 +101,41 @@ function getAddress(event) {
     .then(function (data) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
+      return fetch(
+        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=" +
+          userLat +
+          "&longitude=" +
+          userLon +
+          "&limit=" +
+          20,
+        {
+          headers: {
+            'Authorization': "Bearer " + restaurantAPIKey,
+          },
+          "Content-Type": "application/json",
+        }
+      );
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
     });
-
 }
 
-var sideHistory = document.createElement('li');
-fetch('https://api.yelp.com/v3/businesses/search?limit=' + 5 + '&apikey=' + restuarauntAPIKey)
-    .then(function (response) {
-       return response.json();
-     })
-     .then(function (data) {
-       userLat = data.features[0].properties.lat;
-      userLon = data.features[0].properties.lon;
-     });
+// fetch(
+//   "https://api.yelp.com/v3/businesses/search?limit=" +
+//     5 +
+//     "&apikey=" +
+//     restaurantAPIKey
+// )
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     console.log(data);
+//   });
 
 //var addressHistory = []
 
