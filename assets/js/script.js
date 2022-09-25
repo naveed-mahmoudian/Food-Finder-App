@@ -88,7 +88,7 @@ function getAddress(event) {
   inputCity.val("");
   inputState.val("Choose...");
 
-  // Geocoding API
+  // Geocoding API then inputting data into Yelp API
   fetch(
     "https://api.geoapify.com/v1/geocode/search?text=" +
       fullAddress +
@@ -101,23 +101,41 @@ function getAddress(event) {
     .then(function (data) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
+      return fetch(
+        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=" +
+          userLat +
+          "&longitude=" +
+          userLon +
+          "&limit=" +
+          20,
+        {
+          headers: {
+            'Authorization': "Bearer " + restaurantAPIKey,
+          },
+          "Content-Type": "application/json",
+        }
+      );
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
     });
 }
 
-var sideHistory = document.createElement("li");
-fetch(
-  "https://api.yelp.com/v3/businesses/search?limit=" +
-    5 +
-    "&apikey=" +
-    restaurantAPIKey
-)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    userLat = data.features[0].properties.lat;
-    userLon = data.features[0].properties.lon;
-  });
+// fetch(
+//   "https://api.yelp.com/v3/businesses/search?limit=" +
+//     5 +
+//     "&apikey=" +
+//     restaurantAPIKey
+// )
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     console.log(data);
+//   });
 
 //var addressHistory = []
 
