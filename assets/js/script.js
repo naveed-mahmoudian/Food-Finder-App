@@ -102,7 +102,7 @@ function getAddress(event) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
       return fetch(
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=" +
+        "https://api.yelp.com/v3/businesses/search?latitude=" +
           userLat +
           "&longitude=" +
           userLon +
@@ -110,9 +110,8 @@ function getAddress(event) {
           20,
         {
           headers: {
-            'Authorization': "Bearer " + restaurantAPIKey,
+            Authorization: "Bearer " + restaurantAPIKey,
           },
-          "Content-Type": "application/json",
         }
       );
     })
