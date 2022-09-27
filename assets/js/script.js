@@ -62,7 +62,7 @@ var userLat;
 var userLon;
 
 var restaurantAPIKey =
-  "ZRKeED18Br6ViDtZ-9S7KlRe128BbbFVlU4gqgE9dhjZyih5noGK1ythaIBjt9yasSB-0ZpFYO8MqmpoYiL555G3ju-q-i9d0ijX7ietmDxhduW-n11dT_D9ACctY3Yx";
+  "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
 getStates();
 
@@ -106,7 +106,7 @@ function getAddress(event) {
       var trLat = userLat + 0.1;
       var blLon = userLon - 0.1;
       var trLon = userLon + 0.1;
-      console.log(data);
+      //console.log(data);
       const options = {
         method: "GET",
         headers: {
@@ -133,6 +133,16 @@ function getAddress(event) {
         .then(function (data) {
           console.log(data);
           // Get table data and create table here
+    
+          var name = data.data[0].name
+          var distance = data.data[0].distance_string
+          var type = data.data[0].cuisine[0].name
+          var price = data.data[0].price_level
+          var address = data.data[0].address
+          var rating = data.data[0].rating
+         
+          
+    
         });
     });
 }
