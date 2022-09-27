@@ -101,50 +101,21 @@ function getAddress(event) {
     .then(function (data) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
-      return fetch(
-        "https://api.yelp.com/v3/businesses/search?latitude=" +
-          userLat +
-          "&longitude=" +
-          userLon +
-          "&limit=" +
-          20,
-        {
-          headers: {
-            Authorization: "Bearer " + restaurantAPIKey,
-            "Access-Control-Allow-Origin": "*",
-          },
-          mode: "no-cors",
-        }
-      );
-    })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
       console.log(data);
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "014138bbc0msh855c75cd6b40a30p1e2482jsn5eadfd39bd84",
+          "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+        },
+      };
+      fetch(
+        "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude=34.079142&tr_latitude=34.079042&bl_longitude=-118.30143&tr_longitude=-118.30153&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=km&lang=en_US",
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => console.log(response))
+        .catch((err) => console.error(err));
     });
 }
-
-// fetch(
-//   "https://api.yelp.com/v3/businesses/search?limit=" +
-//     5 +
-//     "&apikey=" +
-//     restaurantAPIKey
-// )
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//   });
-
-//var addressHistory = []
-
-// function recentSearches() {
-//     //var searchHistory = localStorage.getItem('fullAddress')
-//     addressHistory.push(searchHistory);
-//     localStorage.setItem("fullAddress", JSON.stringify(searchHistory));
-//     console.log(localStorage.setItem(fullAddress))
-// }
-
-// recentSearches();
