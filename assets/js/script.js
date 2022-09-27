@@ -128,12 +128,11 @@ function getAddress(event) {
         options
       )
         .then(function (response) {
-          response.json();
+          return response.json();
         })
         .then(function (data) {
           console.log(data);
           // Get table data and create table here
-          
         });
     });
 }
