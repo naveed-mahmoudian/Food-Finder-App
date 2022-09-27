@@ -131,14 +131,29 @@ function getAddress(event) {
         })
         .then(function (data) {
           console.log(data);
-          // Get table data and create table here
 
-          var name = data.data[0].name;
-          var distance = data.data[0].distance_string;
-          var type = data.data[0].cuisine[0].name;
-          var price = data.data[0].price_level;
-          var address = data.data[0].address;
-          var rating = data.data[0].rating;
+          restaurantDetails = [];
+
+          for (i = 0; i < data.data.length; i++) {
+            if (data.data[i].name) {
+              var name = data.data[i].name;
+              var distance = data.data[i].distance_string;
+              var type = data.data[i].cuisine[0].name;
+              var price = data.data[i].price_level;
+              var address = data.data[i].address;
+              var rating = data.data[i].rating;
+
+              restaurantDetails.push({
+                restaurantName: name,
+                restaurantDistance: distance,
+                restaurantType: type,
+                restaurantPrice: price,
+                restaurantAddress: address,
+                restaurantRating: rating,
+              });
+            }
+          }
+          console.log(restaurantDetails);
         });
     });
 }
