@@ -119,16 +119,16 @@ function getAddress(event) {
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
-      //console.log(data)
+      console.log(data)
       
-      var name = data.name
+      var name = data.main.name
       var distance = data.distance_string
       var type = data.cuisine
       var price = data.price_level
       console.log(name)
       console.log(distance)
       console.log(type)
-      console.log(price)
+      
 
       
   })
