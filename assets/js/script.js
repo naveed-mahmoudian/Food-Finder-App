@@ -102,20 +102,34 @@ function getAddress(event) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
 
-
-      // tripadvisor api
-
-    const options = {
-        method: 'GET',
+      var blLat = userLat - 0.1;
+      var trLat = userLat + 0.1;
+      var blLon = userLon - 0.1;
+      var trLon = userLon + 0.1;
+      //console.log(data);
+      const options = {
+        method: "GET",
         headers: {
-            'X-RapidAPI-Key': '46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f',
-            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-        }
-    
-    fetch('https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude='+ blLat +'&tr_latitude=' + trLat + '&bl_longitude=' + blLon + '&tr_longitude=' + trLon + '&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=10&currency=USD&open_now=false&lunit=mi&lang=en_US', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
-    })
+          "X-RapidAPI-Key":
+            "014138bbc0msh855c75cd6b40a30p1e2482jsn5eadfd39bd84",
+          "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+        },
+      };
+      fetch('https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude='+ blLat +'&tr_latitude=' + trLat + '&bl_longitude=' + blLon + '&tr_longitude=' + trLon + '&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=10&currency=USD&open_now=false&lunit=mi&lang=en_US', options)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
+      //console.log(data)
+      
+      var name = data.name
+      var distance = data.distance_string
+      var type = data.cuisine
+      var price = data.price_level
+      console.log(name)
+      console.log(distance)
+      console.log(type)
+      console.log(price)
 
-};
+      
+  })
+}
