@@ -3,7 +3,8 @@ var inputAddress = $("#inputAddress");
 var inputCity = $("#inputCity");
 var inputState = $("#inputState");
 var mapBtn = $("#mapBtn");
-var tableContainer = $(".table-container");
+var tableContainer = $(".tableContainer");
+var tableBody = $(".tableBody");
 var states = [
   "AL",
   "AK",
@@ -154,6 +155,16 @@ function getAddress(event) {
             }
           }
           console.log(restaurantDetails);
+          for (i = 0; i < restaurantDetails.length; i++) {
+            var tableRow = document.createElement("tr");
+            tableRow.innerHTML = `<th scope="row">${restaurantDetails[i].restaurantName}</th>
+            <td>${restaurantDetails[i].restaurantDistance}</td>
+            <td>${restaurantDetails[i].restaurantType}</td>
+            <td>${restaurantDetails[i].restaurantPrice}</td>
+            <td>${restaurantDetails[i].restaurantAddress}</td>
+            <td>${restaurantDetails[i].restaurantRating}</td>`;
+            tableBody.append(tableRow);
+          }
         });
     });
 }
