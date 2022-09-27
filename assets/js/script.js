@@ -101,6 +101,11 @@ function getAddress(event) {
     .then(function (data) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
+
+      var blLat = userLat - 0.1;
+      var trLat = userLat + 0.1;
+      var blLon = userLon - 0.1;
+      var trLon = userLon + 0.1;
       console.log(data);
       const options = {
         method: "GET",
@@ -111,11 +116,24 @@ function getAddress(event) {
         },
       };
       fetch(
-        "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude=34.079142&tr_latitude=34.079042&bl_longitude=-118.30143&tr_longitude=-118.30153&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=km&lang=en_US",
+        "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude=" +
+          blLat +
+          "&tr_latitude=" +
+          trLat +
+          "&bl_longitude=" +
+          blLon +
+          "&tr_longitude=" +
+          trLon +
+          "&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=mi&lang=en_US",
         options
       )
-        .then((response) => response.json())
-        .then((response) => console.log(response))
-        .catch((err) => console.error(err));
+        .then(function (response) {
+          response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          // Get table data and create table here
+          
+        });
     });
 }
