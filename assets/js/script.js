@@ -62,7 +62,7 @@ var userLat;
 var userLon;
 
 var restaurantAPIKey =
-  "ZRKeED18Br6ViDtZ-9S7KlRe128BbbFVlU4gqgE9dhjZyih5noGK1ythaIBjt9yasSB-0ZpFYO8MqmpoYiL555G3ju-q-i9d0ijX7ietmDxhduW-n11dT_D9ACctY3Yx";
+  "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
 getStates();
 
@@ -101,50 +101,21 @@ function getAddress(event) {
     .then(function (data) {
       userLat = data.features[0].properties.lat;
       userLon = data.features[0].properties.lon;
-      return fetch(
-        "https://api.yelp.com/v3/businesses/search?latitude=" +
-          userLat +
-          "&longitude=" +
-          userLon +
-          "&limit=" +
-          20,
-        {
-          headers: {
-            Authorization: "Bearer " + restaurantAPIKey,
-            "Access-Control-Allow-Origin": "*",
-          },
-          mode: "no-cors",
+
+
+      // tripadvisor api
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f',
+            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
         }
-      );
+    
+    fetch('https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude='+ blLat +'&tr_latitude=' + trLat + '&bl_longitude=' + blLon + '&tr_longitude=' + trLon + '&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=10&currency=USD&open_now=false&lunit=mi&lang=en_US', options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-}
 
-// fetch(
-//   "https://api.yelp.com/v3/businesses/search?limit=" +
-//     5 +
-//     "&apikey=" +
-//     restaurantAPIKey
-// )
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//   });
-
-//var addressHistory = []
-
-// function recentSearches() {
-//     //var searchHistory = localStorage.getItem('fullAddress')
-//     addressHistory.push(searchHistory);
-//     localStorage.setItem("fullAddress", JSON.stringify(searchHistory));
-//     console.log(localStorage.setItem(fullAddress))
-// }
-
-// recentSearches();
+};
