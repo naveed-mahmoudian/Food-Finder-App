@@ -124,7 +124,7 @@ function getAddress(event) {
           blLon +
           "&tr_longitude=" +
           trLon +
-          "&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=mi&lang=en_US",
+          "&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=15&currency=USD&open_now=false&lunit=mi&lang=en_US",
         options
       )
         .then(function (response) {
@@ -133,16 +133,28 @@ function getAddress(event) {
         .then(function (data) {
           console.log(data);
           // Get table data and create table here
+        
+        var restuarantDetails = []
     
-          var name = data.data[0].name
-          var distance = data.data[0].distance_string
-          var type = data.data[0].cuisine[0].name
-          var price = data.data[0].price_level
-          var address = data.data[0].address
-          var rating = data.data[0].rating
-         
-          
-    
+            for (var  =0; i < data.data.length; i++) {
+                var name = data.data[i].name
+                var distance = data.data[i].distance_string
+                var type = data.data[i].cuisine[i].name
+                var price = data.data[i].price_level
+                var address = data.data[i].address
+                var rating = data.data[i].rating
+
+                restuarantDetails.push({
+                    restaurantName: name,
+                    restaurantDistance: distance,
+                    restaurantType: type,
+                    restuarantPrice: price,
+                    restaurantAddress: address,
+                    restaurantRating: rating
+                })
+            };
+        restuarantDetails()
+        console.log(restuarantDetails)
         });
-    });
+    })
 }
