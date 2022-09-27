@@ -111,7 +111,9 @@ function getAddress(event) {
         {
           headers: {
             Authorization: "Bearer " + restaurantAPIKey,
+            "Access-Control-Allow-Origin": "*",
           },
+          mode: "no-cors",
         }
       );
     })
