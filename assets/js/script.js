@@ -61,8 +61,7 @@ var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
 var userLat;
 var userLon;
 
-var restaurantAPIKey =
-  "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
+var restaurantAPIKey = "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
 getStates();
 
@@ -133,16 +132,13 @@ function getAddress(event) {
         .then(function (data) {
           console.log(data);
           // Get table data and create table here
-    
-          var name = data.data[0].name
-          var distance = data.data[0].distance_string
-          var type = data.data[0].cuisine[0].name
-          var price = data.data[0].price_level
-          var address = data.data[0].address
-          var rating = data.data[0].rating
-         
-          
-    
+
+          var name = data.data[0].name;
+          var distance = data.data[0].distance_string;
+          var type = data.data[0].cuisine[0].name;
+          var price = data.data[0].price_level;
+          var address = data.data[0].address;
+          var rating = data.data[0].rating;
         });
     });
 }
