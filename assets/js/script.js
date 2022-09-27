@@ -106,7 +106,7 @@ function getAddress(event) {
       var trLat = userLat + 0.1;
       var blLon = userLon - 0.1;
       var trLon = userLon + 0.1;
-      //console.log(data);
+
       const options = {
         method: "GET",
         headers: {
@@ -143,6 +143,7 @@ function getAddress(event) {
               var price = data.data[i].price_level;
               var address = data.data[i].address;
               var rating = data.data[i].rating;
+              var website = data.data[i].website;
 
               restaurantDetails.push({
                 restaurantName: name,
@@ -151,13 +152,14 @@ function getAddress(event) {
                 restaurantPrice: price,
                 restaurantAddress: address,
                 restaurantRating: rating,
+                restaurantWebsite: website,
               });
             }
           }
           console.log(restaurantDetails);
           for (i = 0; i < restaurantDetails.length; i++) {
             var tableRow = document.createElement("tr");
-            tableRow.innerHTML = `<th scope="row">${restaurantDetails[i].restaurantName}</th>
+            tableRow.innerHTML = `<th scope="row"><a href="${restaurantDetails[i].restaurantWebsite}" target="_blank">${restaurantDetails[i].restaurantName}</a></th>
             <td>${restaurantDetails[i].restaurantDistance}</td>
             <td>${restaurantDetails[i].restaurantType}</td>
             <td>${restaurantDetails[i].restaurantPrice}</td>
@@ -165,6 +167,7 @@ function getAddress(event) {
             <td>${restaurantDetails[i].restaurantRating}</td>`;
             tableBody.append(tableRow);
           }
+          $(".restaurant").remove();
         });
     });
 }
