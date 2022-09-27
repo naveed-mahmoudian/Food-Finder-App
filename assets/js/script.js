@@ -3,7 +3,9 @@ var inputAddress = $("#inputAddress");
 var inputCity = $("#inputCity");
 var inputState = $("#inputState");
 var mapBtn = $("#mapBtn");
-var tableContainer = $(".table-container");
+var buttonContainer = $("#buttonContainer");
+var tableContainer = $(".tableContainer");
+var tableBody = $(".tableBody");
 var states = [
   "AL",
   "AK",
@@ -76,6 +78,13 @@ function getStates() {
 mapBtn.click(getAddress);
 function getAddress(event) {
   event.preventDefault();
+
+  buttonContainer.html("");
+  buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+   Finding Restaurants...
+</button>`);
+
   var address = inputAddress.val();
   var city = inputCity.val();
   var state = inputState.val();
@@ -105,7 +114,7 @@ function getAddress(event) {
       var trLat = userLat + 0.1;
       var blLon = userLon - 0.1;
       var trLon = userLon + 0.1;
-      //console.log(data);
+
       const options = {
         method: "GET",
         headers: {
@@ -142,6 +151,7 @@ function getAddress(event) {
               var price = data.data[i].price_level;
               var address = data.data[i].address;
               var rating = data.data[i].rating;
+              var website = data.data[i].website;
 
               restaurantDetails.push({
                 restaurantName: name,
@@ -150,10 +160,25 @@ function getAddress(event) {
                 restaurantPrice: price,
                 restaurantAddress: address,
                 restaurantRating: rating,
+                restaurantWebsite: website,
               });
             }
           }
           console.log(restaurantDetails);
+          for (i = 0; i < restaurantDetails.length; i++) {
+            var tableRow = document.createElement("tr");
+            tableRow.innerHTML = `<th scope="row"><a href="${restaurantDetails[i].restaurantWebsite}" target="_blank">${restaurantDetails[i].restaurantName}</a></th>
+            <td>${restaurantDetails[i].restaurantDistance}</td>
+            <td>${restaurantDetails[i].restaurantType}</td>
+            <td>${restaurantDetails[i].restaurantPrice}</td>
+            <td>${restaurantDetails[i].restaurantAddress}</td>
+            <td>${restaurantDetails[i].restaurantRating}</td>`;
+            tableBody.append(tableRow);
+          }
+          $(".restaurant").remove();
+          buttonContainer.html(
+            `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
+          );
         });
     });
 }

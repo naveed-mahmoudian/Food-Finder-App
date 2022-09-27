@@ -37,7 +37,7 @@
                     <option selected>Choose...</option>
                     </select>
                 </div>
-                <div class="input-group">
+                <div class="input-group" id="buttonContainer">
                     <button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>
                 </div>
                 <hr>
@@ -45,7 +45,7 @@
             </div>
             <!-- Results Table -->
             <div class="col-8 text-center">
-                <table class="table-container table table-striped table-hover">
+                <table class="tableContainer table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -56,15 +56,7 @@
                             <th scope="col">Rating</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th>Restaurant</th>
-                            <td>0.1 miles</td>
-                            <td>American</td>
-                            <td>$$ - $$$</td>
-                            <td>123 Main St.</td>
-                            <td>4.5</td>
-                        </tr>
+                    <tbody class="tableBody">
                     </tbody>
                 </table>
                 <img class="restaurant img-fluid mt-3" src="./assets/images/tableimage.jpg">
