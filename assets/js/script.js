@@ -3,6 +3,7 @@ var inputAddress = $("#inputAddress");
 var inputCity = $("#inputCity");
 var inputState = $("#inputState");
 var mapBtn = $("#mapBtn");
+var buttonContainer = $("#buttonContainer");
 var tableContainer = $(".tableContainer");
 var tableBody = $(".tableBody");
 var states = [
@@ -77,6 +78,13 @@ function getStates() {
 mapBtn.click(getAddress);
 function getAddress(event) {
   event.preventDefault();
+
+  buttonContainer.html("");
+  buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+   Finding Restaurants...
+</button>`);
+
   var address = inputAddress.val();
   var city = inputCity.val();
   var state = inputState.val();
@@ -168,6 +176,9 @@ function getAddress(event) {
             tableBody.append(tableRow);
           }
           $(".restaurant").remove();
+          buttonContainer.html(
+            `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
+          );
         });
     });
 }
