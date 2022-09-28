@@ -131,19 +131,19 @@ function getAddress(event) {
           return response.json();
         })
         .then(function (data) {
-          console.log(data);
+          //console.log(data);
           // Get table data and create table here
         
         var restuarantDetails = []
     
-            for (var  =0; i < data.data.length; i++) {
+            for (var i = 0; i < data.data.length; i++) {
                 var name = data.data[i].name
                 var distance = data.data[i].distance_string
                 var type = data.data[i].cuisine[i].name
                 var price = data.data[i].price_level
                 var address = data.data[i].address
                 var rating = data.data[i].rating
-
+                
                 restuarantDetails.push({
                     restaurantName: name,
                     restaurantDistance: distance,
@@ -151,10 +151,11 @@ function getAddress(event) {
                     restuarantPrice: price,
                     restaurantAddress: address,
                     restaurantRating: rating
+                    
                 })
             };
-        restuarantDetails()
-        console.log(restuarantDetails)
         });
+        restuarantDetails()
+        console.log(restuarantDetails[1])
     })
 }
