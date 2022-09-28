@@ -102,7 +102,7 @@ function collectData(event) {
 function getAddress(fullAddress) {
   console.log(fullAddress);
   buttonContainer.html("");
-  buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" aria-hidden="true"></span>
+  buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Finding Restaurants...
     </button>`);
 
