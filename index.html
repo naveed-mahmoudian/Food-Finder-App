@@ -37,15 +37,28 @@
                     <option selected>Choose...</option>
                     </select>
                 </div>
-                <div class="input-group">
+                <div class="input-group" id="buttonContainer">
                     <button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>
                 </div>
                 <hr>
-                <div class="sideNavHistroy text-center">History Goes Here</div>
+                <div class="sideNavHistory text-center">History Goes Here</div>
             </div>
             <!-- Results Table -->
             <div class="col-8 text-center">
-                <div class="table-container">Table Goes Here</div>
+                <table class="tableContainer table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Distance</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tableBody">
+                    </tbody>
+                </table>
                 <img class="restaurant img-fluid mt-3" src="./assets/images/tableimage.jpg">
             </div>
         </div>

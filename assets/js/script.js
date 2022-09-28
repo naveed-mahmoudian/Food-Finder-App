@@ -3,7 +3,9 @@ var inputAddress = $("#inputAddress");
 var inputCity = $("#inputCity");
 var inputState = $("#inputState");
 var mapBtn = $("#mapBtn");
-var tableContainer = $(".table-container");
+var buttonContainer = $("#buttonContainer");
+var tableContainer = $(".tableContainer");
+var tableBody = $(".tableBody");
 var states = [
   "AL",
   "AK",
@@ -61,8 +63,7 @@ var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
 var userLat;
 var userLon;
 
-var restaurantAPIKey =
-  "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
+var restaurantAPIKey = "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
 getStates();
 
@@ -77,11 +78,19 @@ function getStates() {
 mapBtn.click(getAddress);
 function getAddress(event) {
   event.preventDefault();
+
+  buttonContainer.html("");
+  buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+   Finding Restaurants...
+</button>`);
+
   var address = inputAddress.val();
   var city = inputCity.val();
   var state = inputState.val();
 
   fullAddress = address + ", " + city + ", " + state;
+  saveAddress(fullAddress) 
 
   // Clear form values after saving them to fullAddress variable
   inputAddress.val("");
@@ -106,7 +115,7 @@ function getAddress(event) {
       var trLat = userLat + 0.1;
       var blLon = userLon - 0.1;
       var trLon = userLon + 0.1;
-      //console.log(data);
+
       const options = {
         method: "GET",
         headers: {
@@ -131,31 +140,65 @@ function getAddress(event) {
           return response.json();
         })
         .then(function (data) {
-          //console.log(data);
-          // Get table data and create table here
-        
-        var restuarantDetails = []
-    
-            for (var i = 0; i < data.data.length; i++) {
-                var name = data.data[i].name
-                var distance = data.data[i].distance_string
-                var type = data.data[i].cuisine[i].name
-                var price = data.data[i].price_level
-                var address = data.data[i].address
-                var rating = data.data[i].rating
-                
-                restuarantDetails.push({
-                    restaurantName: name,
-                    restaurantDistance: distance,
-                    restaurantType: type,
-                    restuarantPrice: price,
-                    restaurantAddress: address,
-                    restaurantRating: rating
-                    
-                })
-            };
+          console.log(data);
+
+          restaurantDetails = [];
+
+          for (i = 0; i < data.data.length; i++) {
+            if (data.data[i].name) {
+              var name = data.data[i].name;
+              var distance = data.data[i].distance_string;
+              var type = data.data[i].cuisine[0].name;
+              var price = data.data[i].price_level;
+              var address = data.data[i].address;
+              var rating = data.data[i].rating;
+              var website = data.data[i].website;
+
+              restaurantDetails.push({
+                restaurantName: name,
+                restaurantDistance: distance,
+                restaurantType: type,
+                restaurantPrice: price,
+                restaurantAddress: address,
+                restaurantRating: rating,
+                restaurantWebsite: website,
+              });
+            }
+          }
+          console.log(restaurantDetails);
+          for (i = 0; i < restaurantDetails.length; i++) {
+            var tableRow = document.createElement("tr");
+            tableRow.innerHTML = `<th scope="row"><a href="${restaurantDetails[i].restaurantWebsite}" target="_blank">${restaurantDetails[i].restaurantName}</a></th>
+            <td>${restaurantDetails[i].restaurantDistance}</td>
+            <td>${restaurantDetails[i].restaurantType}</td>
+            <td>${restaurantDetails[i].restaurantPrice}</td>
+            <td>${restaurantDetails[i].restaurantAddress}</td>
+            <td>${restaurantDetails[i].restaurantRating}</td>`;
+            tableBody.append(tableRow);
+          }
+          $(".restaurant").remove();
+          buttonContainer.html(
+            `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
+          );
+          createHistory()
         });
-        restuarantDetails()
-        console.log(restuarantDetails[1])
     })
+}
+
+function saveAddress(address) {
+    localStorage.setItem('lastAddress', address)
+    
+} 
+
+function createHistory() {
+    var historyButton = document.createElement('button')
+    var historyItem = localStorage.getItem('lastAddress')
+   
+    var sideNavHistory = document.querySelector('.sideNavHistory');
+    historyButton.textContent = historyItem
+    sideNavHistory.append(historyButton)
+
+    console.log(historyItem)
+    console.log(sideNavHistory)
+    
 }
