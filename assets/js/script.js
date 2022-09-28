@@ -58,14 +58,16 @@ var states = [
   "WI",
   "WY",
 ];
-var fullAddress = "";
 var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
 var userLat;
 var userLon;
+var savedAddresses;
+var sideNavHistory = document.querySelector('.sideNavHistory');
 
 var restaurantAPIKey = "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
 getStates();
+init();
 
 function getStates() {
   for (i = 0; i < states.length; i++) {
@@ -75,28 +77,34 @@ function getStates() {
   }
 }
 
-mapBtn.click(getAddress);
-function getAddress(event) {
-  event.preventDefault();
+mapBtn.click(collectData);
 
-  buttonContainer.html("");
-  buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" type="button" disabled>
-  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-   Finding Restaurants...
-</button>`);
+function init() {
+    savedAddresses = JSON.parse(localStorage.getItem('savedAddresses')) || []
+    createHistory();
+}
 
-  var address = inputAddress.val();
-  var city = inputCity.val();
-  var state = inputState.val();
+function collectData(event) {
+    event.preventDefault();
+    var address = inputAddress.val();
+    var city = inputCity.val();
+    var state = inputState.val();
+    var fullAddress = address + ", " + city + ", " + state;
+    getAddress(fullAddress)
+    saveAddress({address: address, city: city, state: state}) 
 
-  fullAddress = address + ", " + city + ", " + state;
+    // Clear form values after saving them to fullAddress variable
+    inputAddress.val("");
+    inputCity.val("");
+    inputState.val("Choose...");
+}
 
-  saveAddress(fullAddress) 
-
-  // Clear form values after saving them to fullAddress variable
-  inputAddress.val("");
-  inputCity.val("");
-  inputState.val("Choose...");
+function getAddress(fullAddress) {
+    console.log(fullAddress)
+    buttonContainer.html("");
+    buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" aria-hidden="true"></span>
+    Finding Restaurants...
+    </button>`);
 
   // Geocoding API then inputting data into Yelp API
   fetch(
@@ -181,21 +189,28 @@ function getAddress(event) {
           buttonContainer.html(
             `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
           );
-          createHistory()
         });
     })
 }
 
+
 function saveAddress(address) {
-    localStorage.setItem('lastAddress', address)
+    savedAddresses.push(address)
+    localStorage.setItem('savedAddresses', JSON.stringify(savedAddresses))
 } 
 
 function createHistory() {
-    var historyButton = document.createElement('button')
-    var historyItem = localStorage.getItem('lastAddress')
-    historyButton.setAttribute('class', 'btn btn-primary mt-3 col-12')
-    historyButton.textContent = historyItem
-    var sideNavHistory = document.querySelector('.sideNavHistory');
-    sideNavHistory.append(historyButton)
-    historyButton.addEventListener('click', getAddress)
+    for (var i= 0; i < savedAddresses.length; i++){
+        var historyButton = document.createElement('button')
+        historyButton.setAttribute('class', 'btn btn-primary mt-3 col-12')
+        var historyItem = savedAddresses[i].address + ", " + savedAddresses[i].city + ", " + savedAddresses[i].state
+        historyButton.textContent = historyItem
+        sideNavHistory.append(historyButton)
+        historyButton.addEventListener('click', extractAddress)
+    }
+}
+
+function extractAddress(event) {
+    //console.log(event.target.innerText)
+    getAddress(event.target.innerText)
 }
