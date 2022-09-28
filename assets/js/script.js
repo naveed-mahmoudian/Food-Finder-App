@@ -143,7 +143,7 @@ function getAddress(fullAddress) {
           blLon +
           "&tr_longitude=" +
           trLon +
-          "&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=15&currency=USD&open_now=false&lunit=mi&lang=en_US",
+          "&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=mi&lang=en_US",
         options
       )
         .then(function (response) {
@@ -161,7 +161,6 @@ function getAddress(fullAddress) {
               var type = data.data[i].cuisine[0].name;
               var price = data.data[i].price_level;
               var address = data.data[i].address;
-              var rating = data.data[i].rating;
               var website = data.data[i].website;
 
               restaurantDetails.push({
@@ -170,7 +169,6 @@ function getAddress(fullAddress) {
                 restaurantType: type,
                 restaurantPrice: price,
                 restaurantAddress: address,
-                restaurantRating: rating,
                 restaurantWebsite: website,
               });
             }
@@ -182,8 +180,7 @@ function getAddress(fullAddress) {
             <td>${restaurantDetails[i].restaurantDistance}</td>
             <td>${restaurantDetails[i].restaurantType}</td>
             <td>${restaurantDetails[i].restaurantPrice}</td>
-            <td>${restaurantDetails[i].restaurantAddress}</td>
-            <td>${restaurantDetails[i].restaurantRating}</td>`;
+            <td>${restaurantDetails[i].restaurantAddress}</td>`;
             tableBody.append(tableRow);
           }
           sortTable.DataTable();
