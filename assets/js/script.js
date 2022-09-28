@@ -187,7 +187,6 @@ function getAddress(event) {
 
 function saveAddress(address) {
     localStorage.setItem('lastAddress', address)
-    
 } 
 
 function createHistory() {
@@ -195,10 +194,12 @@ function createHistory() {
     var historyItem = localStorage.getItem('lastAddress')
    
     var sideNavHistory = document.querySelector('.sideNavHistory');
+    historyButton.setAttribute('class', 'btn btn-primary mt-3 col-12')
     historyButton.textContent = historyItem
     sideNavHistory.append(historyButton)
 
-    console.log(historyItem)
-    console.log(sideNavHistory)
-    
+    historyButton.addEventListener('click', getAddress)
+        if (historyButton === getAddress(fullAddress)) {
+            !createHistory()
+        }
 }
