@@ -63,6 +63,7 @@ var userLat;
 var userLon;
 var savedAddresses;
 var sideNavHistory = document.querySelector(".sideNavHistory");
+var sortTable = $("#sortTable");
 
 var restaurantAPIKey = "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
@@ -185,6 +186,7 @@ function getAddress(fullAddress) {
             <td>${restaurantDetails[i].restaurantRating}</td>`;
             tableBody.append(tableRow);
           }
+          sortTable.DataTable();
           $(".restaurant").remove();
           buttonContainer.html(
             `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
