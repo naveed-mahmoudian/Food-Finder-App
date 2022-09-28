@@ -91,6 +91,8 @@ function getAddress(event) {
 
   fullAddress = address + ", " + city + ", " + state;
 
+  saveAddress(fullAddress) 
+
   // Clear form values after saving them to fullAddress variable
   inputAddress.val("");
   inputCity.val("");
@@ -132,7 +134,7 @@ function getAddress(event) {
           blLon +
           "&tr_longitude=" +
           trLon +
-          "&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=mi&lang=en_US",
+          "&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=15&currency=USD&open_now=false&lunit=mi&lang=en_US",
         options
       )
         .then(function (response) {
@@ -179,6 +181,21 @@ function getAddress(event) {
           buttonContainer.html(
             `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
           );
+          createHistory()
         });
-    });
+    })
+}
+
+function saveAddress(address) {
+    localStorage.setItem('lastAddress', address)
+} 
+
+function createHistory() {
+    var historyButton = document.createElement('button')
+    var historyItem = localStorage.getItem('lastAddress')
+    historyButton.setAttribute('class', 'btn btn-primary mt-3 col-12')
+    historyButton.textContent = historyItem
+    var sideNavHistory = document.querySelector('.sideNavHistory');
+    sideNavHistory.append(historyButton)
+    historyButton.addEventListener('click', getAddress)
 }
