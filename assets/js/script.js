@@ -90,6 +90,7 @@ function getAddress(event) {
   var state = inputState.val();
 
   fullAddress = address + ", " + city + ", " + state;
+
   saveAddress(fullAddress) 
 
   // Clear form values after saving them to fullAddress variable
@@ -192,14 +193,9 @@ function saveAddress(address) {
 function createHistory() {
     var historyButton = document.createElement('button')
     var historyItem = localStorage.getItem('lastAddress')
-   
-    var sideNavHistory = document.querySelector('.sideNavHistory');
     historyButton.setAttribute('class', 'btn btn-primary mt-3 col-12')
     historyButton.textContent = historyItem
+    var sideNavHistory = document.querySelector('.sideNavHistory');
     sideNavHistory.append(historyButton)
-
     historyButton.addEventListener('click', getAddress)
-        if (historyButton === getAddress(fullAddress)) {
-            !createHistory()
-        }
 }
