@@ -5,7 +5,6 @@ var inputState = $("#inputState");
 var mapBtn = $("#mapBtn");
 var buttonContainer = $("#buttonContainer");
 var tableContainer = $(".tableContainer");
-var tableBody = $(".tableBody");
 var states = [
   "AL",
   "AK",
@@ -63,7 +62,6 @@ var userLat;
 var userLon;
 var savedAddresses;
 var sideNavHistory = document.querySelector(".sideNavHistory");
-var sortTable = $("#sortTable");
 
 var restaurantAPIKey = "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
@@ -101,7 +99,6 @@ function collectData(event) {
 }
 
 function getAddress(fullAddress) {
-  console.log(fullAddress);
   buttonContainer.html("");
   buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Finding Restaurants...
@@ -150,9 +147,25 @@ function getAddress(fullAddress) {
           return response.json();
         })
         .then(function (data) {
-          console.log(data);
+          var restaurantDetails = [];
 
-          restaurantDetails = [];
+          // Resets the table
+          $("#rightTable").html("");
+          $(
+            "#rightTable"
+          ).html(`<table class="tableContainer table table-striped table-hover" id="sortTable">
+          <thead>
+              <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Distance</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Address</th>
+              </tr>
+          </thead>
+          <tbody class="tableBody">
+          </tbody>
+            </table>`);
 
           for (i = 0; i < data.data.length; i++) {
             if (data.data[i].name) {
@@ -173,7 +186,8 @@ function getAddress(fullAddress) {
               });
             }
           }
-          console.log(restaurantDetails);
+          var tableBody = $(".tableBody");
+          var sortTable = $("#sortTable");
           for (i = 0; i < restaurantDetails.length; i++) {
             var tableRow = document.createElement("tr");
             tableRow.innerHTML = `<th scope="row"><a href="${restaurantDetails[i].restaurantWebsite}" target="_blank">${restaurantDetails[i].restaurantName}</a></th>
@@ -184,10 +198,11 @@ function getAddress(fullAddress) {
             tableBody.append(tableRow);
           }
           sortTable.DataTable();
-          $(".restaurant").remove();
           buttonContainer.html(
             `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
           );
+          $("#mapBtn").click(collectData);
+          createHistory();
         });
     });
 }
@@ -198,6 +213,12 @@ function saveAddress(address) {
 }
 
 function createHistory() {
+  // Refreshes History
+  if (sideNavHistory.childElementCount > 0) {
+    for (var i = 0; i <= sideNavHistory.childElementCount; i++) {
+      sideNavHistory.lastElementChild.remove();
+    }
+  }
   for (var i = 0; i < savedAddresses.length; i++) {
     var historyButton = document.createElement("button");
     historyButton.setAttribute("class", "btn btn-primary mt-3 col-12");
@@ -214,6 +235,5 @@ function createHistory() {
 }
 
 function extractAddress(event) {
-  //console.log(event.target.innerText)
   getAddress(event.target.innerText);
 }
