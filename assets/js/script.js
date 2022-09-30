@@ -76,18 +76,31 @@ function getStates() {
   }
 }
 
-mapBtn.click(collectData);
+mapBtn.click(checkData);
+
+function checkData(event) {
+  event.preventDefault();
+  var address = inputAddress.val();
+  var city = inputCity.val();
+  var state = inputState.val();
+  if (address === "" || city === "" || state === "Choose...") {
+    $("#errorModal").modal("show");
+    return;
+  } else {
+    collectData();
+  }
+}
 
 function init() {
   savedAddresses = JSON.parse(localStorage.getItem("savedAddresses")) || [];
   createHistory();
 }
 
-function collectData(event) {
-  event.preventDefault();
+function collectData() {
   var address = inputAddress.val();
   var city = inputCity.val();
   var state = inputState.val();
+
   var fullAddress = address + ", " + city + ", " + state;
   getAddress(fullAddress);
   saveAddress({ address: address, city: city, state: state });
@@ -201,7 +214,7 @@ function getAddress(fullAddress) {
           buttonContainer.html(
             `<button type="submit" class="btn btn-primary mt-3 col-12" id="mapBtn">Map It</button>`
           );
-          $("#mapBtn").click(collectData);
+          $("#mapBtn").click(checkData);
           createHistory();
         });
     });
