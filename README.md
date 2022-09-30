@@ -20,10 +20,9 @@ The user may enter an address and the app will find the 30 restaurants nearest t
 ## Credits
 
 List of collaborators:
-
 - https://github.com/naveed-mahmoudian
 - https://github.com/blu3bloodedcod3r
-- 
+- https://github.com/sarkymarky/conflict-reso
 
-## License
-
+Resources: 
+- https://www.educba.com/bootstrap-sort-table/
