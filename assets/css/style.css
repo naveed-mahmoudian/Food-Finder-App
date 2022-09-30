@@ -1,61 +1,16 @@
-/* * {
-  background-image: url("");
-} */
+body {
+  background-color: aliceblue;
+}
 
-/* body {
-    font-family: 'Karla', sans-serif;
-    font-size: 20px;
-    line-height: 1.5;
-    text-align: left;
-  } */
-/* 
-.header  {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 700;
-    display: flex;
-    padding: 2%;
-    background-color: #13293d;
-    color: #fff;
-  } */
+h1 {
+  color:aliceblue;
+}
 
-/* button {
-    padding: 5px;
-    margin: 10px;
-    cursor: pointer;
-    font-size: 15px;
-    background-color: #247BA0;
-    color: white;
-  } */
+p {
+  font-size: 24px;
+  color:aliceblue;
+}
 
-  /* .sidenav {
-    right: 0;
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(1, 18, 114);
-    overflow-x: hidden;
-    padding-top: 20px;
-    color:aliceblue
-  } */
-
-/* .restaurant, .table-container {
-    display: flex;
-    flex-direction: row;
-    left: 0;
-    overflow-y: auto;
-    align-items: center;
-    justify-content: space-around;
-    margin: 10px 30px;
-    padding: 5px;
-    width: 500px;
-    position: relative;
-  } */
-
-/* .table-container {
-    display: block;
-    align-content: center;
-    justify-items: center;
-  } */
+.btn, .header {
+  background-color: rgb(11, 94, 167);
+}
