@@ -9,9 +9,18 @@ Provide a short description explaining the what, why, and how of your project. U
 - This solves the problem of not knowing what restaurants are available in the area you are currently visiting.
 - We learned that there are many ways to do different things and that communication and teamwork are the most important part when working on a group project.
 
+## Technologies Used
+
+- jQuery (DOM Selection/Maipulation Methods)
+- Bootstrap (Styling/Layout/Modals)
+- GeoAppify API (Get Longitute and Latitude based on User's Address)
+- Travel Advisor API (Plug in Coordinates to Find Local Restaurants)
+
 ## Usage
 
 The user may enter an address and the app will find the 30 restaurants nearest the location of the address entered. The user may sort by name, price, type of restaurant, address and distance.
+
+[Click Here for Deployed Application](https://naveed-mahmoudian.github.io/Food-Finder-App/)
 
 ![Screenshot of Food Finder app table headings, picture ofa table in a restaurant](./assets/images/readmescreenshot.png)
 
