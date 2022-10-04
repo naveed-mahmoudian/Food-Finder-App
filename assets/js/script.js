@@ -228,9 +228,7 @@ function saveAddress(address) {
 function createHistory() {
   // Refreshes History
   if (sideNavHistory.childElementCount > 0) {
-    for (var i = 0; i <= sideNavHistory.childElementCount; i++) {
-      sideNavHistory.lastElementChild.remove();
-    }
+    sideNavHistory.innerHTML = "";
   }
   for (var i = 0; i < savedAddresses.length; i++) {
     var historyButton = document.createElement("button");
