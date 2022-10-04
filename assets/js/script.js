@@ -57,17 +57,18 @@ var states = [
   "WI",
   "WY",
 ];
+var sideNavHistory = document.querySelector(".sideNavHistory");
 var geocodeAPIKey = "4635cb96e24846fe9f2272b65e5deea4";
+var restaurantAPIKey = "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 var userLat;
 var userLon;
 var savedAddresses;
-var sideNavHistory = document.querySelector(".sideNavHistory");
-
-var restaurantAPIKey = "46d9ba4524msh1bfc5bf71bc0638p1f849fjsnb2b8ad21547f";
 
 getStates();
 init();
+mapBtn.click(checkData);
 
+// Fills out state selector on the form
 function getStates() {
   for (i = 0; i < states.length; i++) {
     var state = document.createElement("option");
@@ -76,8 +77,13 @@ function getStates() {
   }
 }
 
-mapBtn.click(checkData);
+// Initializes the page by getting data from local storage
+function init() {
+  savedAddresses = JSON.parse(localStorage.getItem("savedAddresses")) || [];
+  createHistory();
+}
 
+// Checks the data the user entered. If not a valid address, it shows the error modal
 function checkData(event) {
   event.preventDefault();
   var address = inputAddress.val();
@@ -91,11 +97,7 @@ function checkData(event) {
   }
 }
 
-function init() {
-  savedAddresses = JSON.parse(localStorage.getItem("savedAddresses")) || [];
-  createHistory();
-}
-
+// Once input is verified, this function collects and stores the user's address
 function collectData() {
   var address = inputAddress.val();
   var city = inputCity.val();
@@ -111,13 +113,13 @@ function collectData() {
   inputState.val("Choose...");
 }
 
+// Does all the API fetching that is required from both APIs used. Refreshes the table and loads the table with data
 function getAddress(fullAddress) {
   buttonContainer.html("");
   buttonContainer.html(`<button class="btn btn-primary mt-3 col-12" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Finding Restaurants...
     </button>`);
 
-  // Geocoding API then inputting data into Yelp API
   fetch(
     "https://api.geoapify.com/v1/geocode/search?text=" +
       fullAddress +
@@ -220,11 +222,13 @@ function getAddress(fullAddress) {
     });
 }
 
+// Saves the user's address to local storage
 function saveAddress(address) {
   savedAddresses.push(address);
   localStorage.setItem("savedAddresses", JSON.stringify(savedAddresses));
 }
 
+// Creates history buttons
 function createHistory() {
   // Refreshes History
   if (sideNavHistory.childElementCount > 0) {
@@ -245,6 +249,7 @@ function createHistory() {
   }
 }
 
+// Extracts address from the history button that is clicked on
 function extractAddress(event) {
   getAddress(event.target.innerText);
 }
