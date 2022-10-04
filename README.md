@@ -23,7 +23,7 @@
 
 ## Usage
 
-The user may enter an address and the app will find the 30 restaurants nearest the location of the address entered. The user may sort by name, price, type of restaurant, address and distance.
+The user may enter an address and the app will find the 30 restaurants nearest the location of the address entered. The user may sort by name, price, type of restaurant, address and distance. The user may also click on the name fo the restaurant to view their website in a new tab.
 
 [Click Here for Deployed Application](https://naveed-mahmoudian.github.io/Food-Finder-App/)
 
